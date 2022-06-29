@@ -13,6 +13,8 @@ import requests
 bot = commands.Bot(command_prefix="!")
 
 TOKEN = os.environ['TOKEN']
+id = os.environ['id']
+password = os.environ['password']
 
 lecture = ""
 url = "https://ex-oj.sejong.ac.kr/index.php/auth/login/"
@@ -51,8 +53,8 @@ async def submit(ctx,week,num,path):
     try:
         driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()),options=option)
         driver.get(url)
-        driver.find_element(By.ID,"id").send_keys('20011607')
-        driver.find_element(By.ID,"password").send_keys("jjun3865",Keys.ENTER)
+        driver.find_element(By.ID,"id").send_keys(id)
+        driver.find_element(By.ID,"password").send_keys(password,Keys.ENTER)
         driver.get("https://ex-oj.sejong.ac.kr/index.php/judge/studentmain/1241")#url of algorithm class
         driver.find_element(By.PARTIAL_LINK_TEXT,f"{week}주차").click()
         driver.find_element(By.PARTIAL_LINK_TEXT,f"문제{num}").click()
