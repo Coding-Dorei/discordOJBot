@@ -52,7 +52,7 @@ async def submit(ctx,week,num,path):
         return
     try:
         #driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()),options=option)
-        driver = webdriver.Chrome('./chromedriver')
+        driver = webdriver.Chrome(executable_path='./chromedriver')
         driver.get(url)
         driver.find_element(By.ID,"id").send_keys(id)
         driver.find_element(By.ID,"password").send_keys(password,Keys.ENTER)
