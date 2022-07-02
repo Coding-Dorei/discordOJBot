@@ -36,6 +36,9 @@ resultSet = {
     '12':"Invalid Case",
     '13':"System Call Error"
 }
+@bot.event
+async def on_ready():
+    await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.playing,name="judging"))
 
 @bot.command()
 async def submit(ctx,week,num,path):
@@ -52,7 +55,6 @@ async def submit(ctx,week,num,path):
         await ctx.send(f"can not find {path}")
         return
     try:
-        #driver = webdriver.Chrome(service=Service(os.environ['GOOGLE_CHROME_BIN']),options=option)
         driver = webdriver.Chrome(service=chromeService)
         driver.get(url)
         driver.find_element(By.ID,"id").send_keys(id)
@@ -80,12 +82,11 @@ async def submit(ctx,week,num,path):
             data = requests.get(apiURL).json()
         score = float(data['pass_rate']) * 100.0
         result = resultSet[data['result']]
-        await ctx.send(f"{result} {score} resultUrl:{apiURL}")
+        await ctx.send(f"{result} {score} result:{apiURL}",reference=ctx.message)
         driver.close()
     except Exception as e:
         if driver:
             driver.close()
-
         print(e)
         await ctx.send("ERR")
 
