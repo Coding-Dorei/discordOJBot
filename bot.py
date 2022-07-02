@@ -20,6 +20,7 @@ lecture = ""
 url = "https://ex-oj.sejong.ac.kr/index.php/auth/login/"
 option = Options()
 option.add_argument("--headless")
+option.add_argument("--no-sandbox")
 resultSet = {
     '1':"Loading",
     '2':"Accept",
