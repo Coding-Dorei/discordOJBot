@@ -38,7 +38,7 @@ resultSet = {
 @bot.command()
 async def submit(ctx,week,num,path):
     path = path.replace("/","")
-    if path.find(".py") != -1 or path.find(".exe") != -1 or path.find("..") != -1:
+    if path.find(".py") != -1 or path.find("..") != -1:
         await ctx.send("no Hack o0o")
         return
     code = ""
@@ -51,7 +51,7 @@ async def submit(ctx,week,num,path):
         return
     try:
         #driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()),options=option)
-        driver = webdriver.Chrome(executable_path="./chromedriver",options=option)
+        driver = webdriver.Chrome(options=option)
         driver.get(url)
         driver.find_element(By.ID,"id").send_keys(id)
         driver.find_element(By.ID,"password").send_keys(password,Keys.ENTER)
