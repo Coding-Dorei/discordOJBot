@@ -15,6 +15,7 @@ bot = commands.Bot(command_prefix="!")
 TOKEN = os.environ['TOKEN']
 id = os.environ['id']
 password = os.environ['password']
+chromeService = Service(ChromeDriverManager().install())
 
 lecture = ""
 url = "https://ex-oj.sejong.ac.kr/index.php/auth/login/"
@@ -52,7 +53,7 @@ async def submit(ctx,week,num,path):
         return
     try:
         #driver = webdriver.Chrome(service=Service(os.environ['GOOGLE_CHROME_BIN']),options=option)
-        driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
+        driver = webdriver.Chrome(service=chromeService)
         driver.get(url)
         driver.find_element(By.ID,"id").send_keys(id)
         driver.find_element(By.ID,"password").send_keys(password,Keys.ENTER)
