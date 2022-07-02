@@ -50,8 +50,7 @@ async def submit(ctx,week,num,path):
         await ctx.send(f"can not find {path}")
         return
     try:
-        #driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()),options=option)
-        driver = webdriver.Chrome(executable_path=os.environ['GOOGLE_CHROME_BIN'],options=option)
+        driver = webdriver.Chrome(Service(os.environ['GOOGLE_CHROME_BIN']),options=option)
         driver.get(url)
         driver.find_element(By.ID,"id").send_keys(id)
         driver.find_element(By.ID,"password").send_keys(password,Keys.ENTER)
